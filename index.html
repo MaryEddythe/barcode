@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DENR Barcode Generator</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <img src="mgblogo.png" alt="DENR Logo" class="logo">
+      <div class="header-text">
+        <h1>Department of Environment and Natural Resources</h1>
+        <h2>MINES AND GEOSCIENCES DIVISION</h2>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="docType">Document Type</label>
+      <select id="docType">
+        <option value="LETTER">Letter</option>
+        <option value="MEMO">Memo</option>
+        <option value="MEMORANDUM">Report</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="docDate">Date Document Received</label>
+      <input type="date" id="docDate">
+    </div>
+
+    <button id="generateBtn">Generate Barcode</button>
+
+    <div class="output">
+      <svg id="barcode"></svg>
+      <div class="timestamp" id="timestamp"></div>
+      <button id="printBtn" style="display:none;">Print Sticker</button>
+    </div>
+
+    <div id="printableBarcode" class="printable-section" style="display:none;">
+      <div class="sticker-content">
+        <div class="sticker-header">
+          <img src="mgblogo.png" alt="DENR Logo" class="sticker-logo">
+          <div class="sticker-text">
+            <p class="sticker-title">Department of Environment and Natural Resources</p>
+            <p class="sticker-subtitle">MINES AND GEOSCIENCES BUREAU</p>
+          </div>
+        </div>
+        <svg id="barcodeSticker"></svg>
+        <div class="sticker-bottom">
+          <div class="sticker-time" id="stickerTime"></div>
+          <div class="sticker-code" id="stickerTimestamp"></div>
+          <div class="sticker-doctype" id="stickerDocType"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

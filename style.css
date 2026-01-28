@@ -1,0 +1,232 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #2e7d32;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+}
+
+.header-text {
+  text-align: center;
+  flex: 1;
+}
+
+.header-text h1 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.header-text h2 {
+  font-size: 16px;
+  margin: 5px 0 0 0;
+  font-weight: bold;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+select, button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+.output {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#printBtn {
+  width: 100%;
+  background: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+#printBtn:hover {
+  background: #1565c0;
+}
+
+/* Printable Sticker Styling */
+.printable-section {
+  padding: 20px;
+  background: white;
+}
+
+.sticker-content {
+  width: 2in;
+  height: 1in;
+  max-width: 2in;
+  margin: 0 auto;
+  padding: 3px;
+  border: 1px solid #000;
+  text-align: center;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 1px;
+}
+
+.sticker-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.sticker-logo {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.sticker-text {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sticker-title {
+  margin: 0;
+  font-size: 5px;
+  font-weight: bold;
+  color: #000;
+  line-height: 0.8;
+}
+
+.sticker-subtitle {
+  margin: 0;
+  font-size: 4px;
+  font-weight: bold;
+  color: #000;
+  line-height: 0.8;
+}
+
+#barcodeSticker {
+  flex-shrink: 0;
+  margin: 1px 0;
+}
+
+.sticker-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.sticker-time {
+  font-size: 5px;
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+  flex: 0 0 auto;
+}
+
+.sticker-code {
+  font-size: 6px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  flex: 1;
+}
+
+.sticker-doctype {
+  font-size: 5px;
+  font-weight: bold;
+  color: #000;
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .header,
+  .form-group,
+  #generateBtn,
+  .output,
+  .timestamp {
+    display: none !important;
+  }
+
+  .printable-section {
+    display: block !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sticker-content {
+    max-width: 2in;
+    width: 2in;
+    height: 1in;
+    border: 1px solid #2e7d32;
+    page-break-inside: avoid;
+  }
+}
