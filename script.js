@@ -2,6 +2,12 @@ document.getElementById("generateBtn").addEventListener("click", generateBarcode
 document.getElementById("printBtn").addEventListener("click", function() {
   window.print();
 });
+document.getElementById("cancelBtn").addEventListener("click", function() {
+  document.getElementById("barcodeModal").classList.remove("show");
+  // Reset form
+  document.getElementById("docType").value = "LETTER";
+  document.getElementById("docDate").value = "";
+});
 
 function generateBarcode() {
   const docType = document.getElementById("docType").value;
@@ -41,17 +47,17 @@ function generateBarcode() {
   document.getElementById("timestamp").textContent =
     "Barcode: " + barcodeValue;
 
-  // Extract date (YYYY-MM-DD -> show as MM/DD/YY format)
-  const dateOnly = dateObj.getMonth() + 1 + "/" + dateObj.getDate().toString().padStart(2, '0') + "/" + dateObj.getFullYear().toString().slice(-2);
-
-  // Get current time (HH:MM)
+  // Get current time (12-hour format with AM/PM)
   const now = new Date();
-  const timeOnly = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0');
+  const hours = now.getHours() % 12 || 12;
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+  const timeOnly = hours + ":" + minutes + ampm;
 
   document.getElementById("stickerTime").textContent = timeOnly;
   document.getElementById("stickerTimestamp").textContent = barcodeValue;
   document.getElementById("stickerDocType").textContent = docType;
 
-  document.getElementById("printBtn").style.display = "block";
-  document.getElementById("printableBarcode").style.display = "block";
+  // Show modal
+  document.getElementById("barcodeModal").classList.add("show");
 }

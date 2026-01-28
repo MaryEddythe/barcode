@@ -39,23 +39,36 @@
     <div class="output">
       <svg id="barcode"></svg>
       <div class="timestamp" id="timestamp"></div>
-      <button id="printBtn" style="display:none;">Print Sticker</button>
     </div>
 
-    <div id="printableBarcode" class="printable-section" style="display:none;">
-      <div class="sticker-content">
-        <div class="sticker-header">
-          <img src="mgblogo.png" alt="DENR Logo" class="sticker-logo">
-          <div class="sticker-text">
-            <p class="sticker-title">Department of Environment and Natural Resources</p>
-            <p class="sticker-subtitle">MINES AND GEOSCIENCES BUREAU</p>
+    <!-- Modal Popup -->
+    <div id="barcodeModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Generated Barcode</h3>
+        </div>
+        
+        <div id="printableBarcode" class="printable-section">
+          <div class="sticker-content">
+            <div class="sticker-header">
+              <img src="mgblogo.png" alt="DENR Logo" class="sticker-logo">
+              <div class="sticker-text">
+                <p class="sticker-title">Department of Environment and Natural Resources</p>
+                <p class="sticker-subtitle">MINES AND GEOSCIENCES BUREAU</p>
+              </div>
+            </div>
+            <svg id="barcodeSticker"></svg>
+            <div class="sticker-bottom">
+              <div class="sticker-time" id="stickerTime"></div>
+              <div class="sticker-code" id="stickerTimestamp"></div>
+              <div class="sticker-doctype" id="stickerDocType"></div>
+            </div>
           </div>
         </div>
-        <svg id="barcodeSticker"></svg>
-        <div class="sticker-bottom">
-          <div class="sticker-time" id="stickerTime"></div>
-          <div class="sticker-code" id="stickerTimestamp"></div>
-          <div class="sticker-doctype" id="stickerDocType"></div>
+
+        <div class="modal-footer">
+          <button id="printBtn" class="btn-print">Print</button>
+          <button id="cancelBtn" class="btn-cancel">Cancel</button>
         </div>
       </div>
     </div>
