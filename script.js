@@ -1,24 +1,33 @@
 document.getElementById("generateBtn").addEventListener("click", generateBarcode);
 document.getElementById("printBtn").addEventListener("click", function() {
-  const svg = document.getElementById('barcodeSticker');
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const svgData = new XMLSerializer().serializeToString(svg);
-  const img = new Image();
+  const printableBarcode = document.getElementById('printableBarcode');
+  const modalFooter = document.querySelector('.modal-footer');
   
-  img.onload = function() {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png');
-    link.download = `barcode_${new Date().getTime()}.png`;
-    link.click();
+  // Apply capture mode
+  printableBarcode.classList.add('capture-mode');
+  modalFooter.style.display = 'none';
+  
+  // Load html2canvas
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+  script.onload = function() {
+    html2canvas(printableBarcode, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      allowTaint: true,
+      useCORS: true
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `DENR_Barcode_${new Date().getTime()}.png`;
+      link.click();
+      
+      // Remove capture mode
+      printableBarcode.classList.remove('capture-mode');
+      modalFooter.style.display = 'flex';
+    });
   };
-  
-  img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
-  document.getElementById('barcodeModal').style.display = 'none';
+  document.head.appendChild(script);
 });
 document.getElementById("cancelBtn").addEventListener("click", function() {
   document.getElementById("barcodeModal").classList.remove("show");
