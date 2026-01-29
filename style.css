@@ -136,74 +136,82 @@ input[type="date"]:focus {
 }
 
 .sticker-content {
-  width: 2in;
-  height: 1in;
-  max-width: 2in;
+  width: 4in;
+  height: 2.5in;
+  max-width: 4in;
   margin: 0 auto;
-  padding: 3px;
-  border: 1px solid #000;
+  padding: 10px;
+  border: 2px solid #000;
   text-align: center;
   background: white;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  gap: 1px;
+  gap: 0;
 }
 
 .sticker-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 6px;
   flex-shrink: 0;
   width: 100%;
+  padding: 5px 0;
 }
 
 .sticker-logo {
-  width: 18px;
-  height: 18px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 }
 
 .sticker-text {
   text-align: center;
   flex-shrink: 0;
+  flex: 1;
 }
 
 .sticker-title {
   margin: 0;
-  font-size: 5px;
+  font-size: 12px;
   font-weight: 700;
   color: #000;
-  line-height: 0.8;
+  line-height: 1.1;
 }
 
 .sticker-subtitle {
-  margin: 0;
-  font-size: 4px;
+  margin: 2px 0 0 0;
+  font-size: 10px;
   font-weight: 700;
   color: #000;
-  line-height: 0.8;
+  line-height: 1.1;
 }
 
 #barcodeSticker {
   flex-shrink: 0;
-  margin: 1px 0;
+  margin: 8px 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sticker-bottom {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   flex-shrink: 0;
-  gap: 2px;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid #ccc;
 }
 
 .sticker-time {
-  font-size: 5px;
+  font-size: 12px;
   font-weight: 700;
   color: #000;
   text-align: left;
@@ -211,15 +219,16 @@ input[type="date"]:focus {
 }
 
 .sticker-code {
-  font-size: 6px;
+  font-size: 14px;
   font-weight: 700;
   color: #000;
   text-align: center;
   flex: 1;
+  word-break: break-all;
 }
 
 .sticker-doctype {
-  font-size: 5px;
+  font-size: 12px;
   font-weight: 700;
   color: #000;
   text-align: right;
@@ -246,12 +255,14 @@ input[type="date"]:focus {
 
 .modal-content {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 40px;
   border-radius: 16px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
-  width: 90%;
+  max-width: 700px;
+  width: 95%;
   animation: slideUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 @keyframes slideUp {
@@ -319,12 +330,12 @@ input[type="date"]:focus {
 }
 
 #printableBarcode {
-  padding: 20px;
+  padding: 30px;
   margin: 0;
   display: flex;
   justify-content: center;
   background: #f7fafc;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 /* Print Styles */
@@ -363,12 +374,47 @@ input[type="date"]:focus {
     max-width: 2in;
     width: 2in;
     height: 1in;
+    padding: 3px;
     border: 1px solid #000;
-    page-break-inside: avoid;
+    gap: 1px;
   }
 
-  #printableBarcode {
-    background: transparent;
-    padding: 0;
+  .sticker-header {
+    padding: 2px 0;
+  }
+
+  .sticker-logo {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sticker-title {
+    font-size: 5px;
+    line-height: 0.9;
+  }
+
+  .sticker-subtitle {
+    font-size: 4px;
+    margin: 1px 0 0 0;
+    line-height: 0.9;
+  }
+
+  #barcodeSticker {
+    margin: 1px 0;
+  }
+
+  .sticker-bottom {
+    padding: 2px 0;
+    gap: 2px;
+    border-top: none;
+  }
+
+  .sticker-time,
+  .sticker-doctype {
+    font-size: 5px;
+  }
+
+  .sticker-code {
+    font-size: 6px;
   }
 }

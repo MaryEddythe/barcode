@@ -1,6 +1,24 @@
 document.getElementById("generateBtn").addEventListener("click", generateBarcode);
 document.getElementById("printBtn").addEventListener("click", function() {
-  window.print();
+  const svg = document.getElementById('barcodeSticker');
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const svgData = new XMLSerializer().serializeToString(svg);
+  const img = new Image();
+  
+  img.onload = function() {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = `barcode_${new Date().getTime()}.png`;
+    link.click();
+  };
+  
+  img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+  document.getElementById('barcodeModal').style.display = 'none';
 });
 document.getElementById("cancelBtn").addEventListener("click", function() {
   document.getElementById("barcodeModal").classList.remove("show");
@@ -39,8 +57,8 @@ function generateBarcode() {
   JsBarcode("#barcodeSticker", barcodeValue, {
     format: "CODE128",
     lineColor: "#000",
-    width: 0.7,
-    height: 30,
+    width: 1.2,
+    height: 60,
     displayValue: false
   });
 
