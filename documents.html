@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="documents.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="mgblogo.png" alt="DENR Logo" class="logo">
+      <div class="header-text">
+        <h1>Department of Environment and Natural Resources</h1>
+        <h2>MINES AND GEOSCIENCES BUREAU</h2>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <a href="documents.html" class="nav-link active">Document Management</a>
+      <a href="barcode.html" class="nav-link">Barcode Generator</a>
+    </div>
+
+    <div class="documents-section">
+      <div class="section-header">
+        <h2>Document Management System</h2>
+        <button id="addDocBtn" class="btn-add">+ Add New Document</button>
+      </div>
+
+      <div id="documentsTable" class="documents-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Addressor</th>
+              <th>Company Address</th>
+              <th>Subject</th>
+              <th>Addressee</th>
+              <th>Date Released</th>
+              <th>Document Type</th>
+              <th>Remarks</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="documentsList">
+            <tr class="empty-row">
+              <td colspan="8">No documents added yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add/Edit Document Modal -->
+    <div id="documentModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Add New Document</h3>
+          <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+
+        <form id="documentForm">
+          <div class="form-group">
+            <label for="addressor">Addressor</label>
+            <input type="text" id="addressor" required>
+          </div>
+
+          <div class="form-group">
+            <label for="companyAddress">Company Address</label>
+            <input type="text" id="companyAddress" required>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required>
+          </div>
+
+          <div class="form-group">
+            <label for="addressee">Addressee</label>
+            <input type="text" id="addressee" required>
+          </div>
+
+          <div class="form-group">
+            <label for="dateReleased">Date Released</label>
+            <input type="date" id="dateReleased" required>
+          </div>
+
+          <div class="form-group">
+            <label for="documentType">Document Type</label>
+            <select id="documentType" required>
+              <option value="">Select Type</option>
+              <option value="LETTER">Letter</option>
+              <option value="MEMO">Memo</option>
+              <option value="MEMORANDUM">Report</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="remarks">Remarks</label>
+            <textarea id="remarks" rows="3"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn-save">Save Document</button>
+            <button type="button" class="btn-cancel" id="cancelModal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Barcode Modal -->
+    <div id="barcodeModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Generated Barcode</h3>
+          <span class="close-btn" id="closeBarcodeModal">&times;</span>
+        </div>
+        
+        <div id="printableBarcode" class="printable-section">
+          <div class="sticker-content">
+            <div class="sticker-header">
+              <img src="mgblogo.png" alt="DENR Logo" class="sticker-logo">
+              <div class="sticker-text">
+                <p class="sticker-title">Department of Environment and Natural Resources</p>
+                <p class="sticker-subtitle">MINES AND GEOSCIENCES BUREAU</p>
+              </div>
+            </div>
+            
+            <div class="document-info">
+              <p><strong>Addressor:</strong> <span id="barcodeAddressor"></span></p>
+              <p><strong>Company Address:</strong> <span id="barcodeCompanyAddress"></span></p>
+              <p><strong>Subject:</strong> <span id="barcodeSubject"></span></p>
+              <p><strong>Addressee:</strong> <span id="barcodeAddressee"></span></p>
+              <p><strong>Date Released:</strong> <span id="barcodeDateReleased"></span></p>
+              <p><strong>Document Type:</strong> <span id="barcodeDocumentType"></span></p>
+              <p><strong>Remarks:</strong> <span id="barcodeRemarks"></span></p>
+            </div>
+
+            <svg id="barcodeSticker"></svg>
+            <div class="sticker-bottom">
+              <div class="sticker-time" id="stickerTime"></div>
+              <div class="sticker-code" id="stickerTimestamp"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="printBtn" class="btn-print">Download</button>
+          <button id="confirmBtn" class="btn-confirm">Confirm & Save</button>
+          <button id="cancelBarcodeBtn" class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="documents.js"></script>
+</body>
+</html>
